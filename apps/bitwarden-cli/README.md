@@ -2,6 +2,8 @@ Dockerfile for Bitwarden
 
 Requires temp folder at /config
 
+TAG Style: 
+Year.Week.DayOfWeek.PointRelease#
 ENV variables required:
 
       BW_HOST: "https://vault.bitwarden.com"
