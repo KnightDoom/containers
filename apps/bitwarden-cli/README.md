@@ -3,7 +3,8 @@ Dockerfile for Bitwarden
 Requires temp folder at /config
 
 TAG Style: 
-Year.Week.DayOfWeek.PointRelease#
+Year.Week.DayOfWeek_{PointRelease#} 
+Point release only added if > 0.
 
 ENV variables required:
 
