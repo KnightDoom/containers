@@ -24,14 +24,18 @@ jobs:
 
           # Fetch existing tags for this package from GHCR, count how many
           # already start with today's date tag
+          #  /orgs/{org}/packages/container/bitwarden-cli/versions for orgs
           EXISTING_COUNT=$(gh api \
             --paginate \
             "/user/packages/container/bitwarden-cli/versions" \
             --jq '[.[].metadata.container.tags[]? | select(startswith("'"$DATE_TAG"'"))] | length' \
             2>/dev/null || echo 0)
 
-          POINT=$((EXISTING_COUNT))
-          FULL_TAG="${DATE_TAG}.${POINT}"
+          if [ "$EXISTING_COUNT" -gt 0 ]; then
+            FULL_TAG="${DATE_TAG}_${EXISTING_COUNT}"
+          else
+            FULL_TAG="${DATE_TAG}"
+          fi
 
           echo "tag=${FULL_TAG}" >> "$GITHUB_OUTPUT"
           echo "Resolved tag: ${FULL_TAG}"
