@@ -25,7 +25,7 @@ echo "Verifying that the Bitwarden vault is unlocked..."\n\
 bw unlock --check\n\
 \n\
 echo "Running \`bw serve\` on port 8087..."\n\
-bw serve --hostname 0.0.0.0\n' > /entrypoint.sh && chmod +x /entrypoint.sh
+bw serve --hostname 0.0.0.0 --disable-origin-protection\n' > /entrypoint.sh && chmod +x /entrypoint.sh
 
 USER node
 
